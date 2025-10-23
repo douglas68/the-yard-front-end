@@ -10,6 +10,10 @@ export async function api(path, opts = {}) {
     try { msg = (await res.json()).error || msg; } catch {}
     throw new Error(msg);
   }
+
+  if(res.status === 204 || res.headers.get("content-length") === "0"){
+    return null;
+  }
   return res.json();
 }
 
