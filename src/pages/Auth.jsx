@@ -62,7 +62,7 @@ const quickUseExisting = async (e) => {
         </div>
         <div className="row" style={{justifyContent:"space-between", marginTop:8}}>
           <button className="btn" disabled={loading}>{loading ? "Creating…" : "Continue"}</button>
-          <button className="btn" type="button" onClick={quickUseExisting} style={{background:"#6b7280"}}>Use Existing ID</button>
+          <button className="btn" type="button" onClick={quickUseExisting} style={{background:"#6b7280"}}>(Devlogin) Use Existing Email</button>
         </div>
       </form>
     </div>

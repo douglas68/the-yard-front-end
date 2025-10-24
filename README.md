@@ -43,7 +43,6 @@ Click the "Logout" button in the navbar to return to the authentication page.
 1) Likes and linking the likes to the users
 2) events area
 3) Log in Page
-4) Pictures
 5) orgainzation page and list the people in it
 6) comments and linking the comments to the user
 7) Admin Dashboard
