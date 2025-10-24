@@ -47,6 +47,7 @@ Click the "Logout" button in the navbar to return to the authentication page.
 5) orgainzation page and list the people in it
 6) comments and linking the comments to the user
 7) Admin Dashboard
+8) upload photos on post and profile 
 
 
 ## Thoughts
