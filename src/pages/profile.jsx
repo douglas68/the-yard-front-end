@@ -29,6 +29,7 @@ export default function Profile(){
         <>
           <div className="card">
             <div className="header-xl">{me.fullName}</div>
+            {/* <div className="meta">{me.graduationYear}</div> */}
             <div className="meta">{me.email}</div>
             <div className="meta" style={{marginTop:6}}>Role: {me.role}</div>
           </div>

@@ -50,9 +50,13 @@ export const deletePost = (id, authorId) =>
   api(`/posts/${id}?authorId=${authorId}`, { 
     method: "DELETE" 
   });
-  
+
 export const editPost = (id, body, authorId) => 
   api(`/posts/${id}`, { 
     method: "PATCH", 
     body: JSON.stringify({ ...body, authorId }) 
   });
+
+export const findUserByEmail = (email) => 
+  api(`/users/find?email=${encodeURIComponent(email)}`);
+

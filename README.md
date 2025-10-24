@@ -32,7 +32,7 @@ Delete your posts directly from this page
 
 Update your name and email
 Change your organization affiliation
-Add graduation year and about section
+//graudation year, role and about doesn't work  ()
 Changes save and redirect back to your profile
 
 5. Logout

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createUser, getOrgs } from "../api/client.js";
+import { createUser, getOrgs, findUserByEmail } from "../api/client.js";
 import { useNavigate } from "react-router-dom";
 
 export default function Auth(){
@@ -22,11 +22,18 @@ export default function Auth(){
     finally{ setLoading(false); }
   };
 
-  const quickUseExisting = (e) => {
-    e.preventDefault();
-    const id = prompt("Enter an existing userId:");
-    if(id){ localStorage.setItem("userId", id); nav("/dashboard"); }
+const quickUseExisting = async (e) => {
+  e.preventDefault();
+  const email = prompt("Enter your email:");
+  if (!email) return;
+  try {
+    const { user } = await findUserByEmail(email);
+    localStorage.setItem("userId", user._id);
+    nav("/dashboard");
+  } catch (err) {
+    alert(err.message || "User not found");
   }
+};
 
   return (
     <div className="container" style={{maxWidth:520, paddingTop:40}}>
