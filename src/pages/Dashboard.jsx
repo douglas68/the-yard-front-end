@@ -12,7 +12,6 @@ export default function Dashboard(){
   const [loading, setLoading] = useState(true);
   const [posting, setPosting] = useState(false);
   const [error, setError] = useState("");
-  const [editingPost, setEditingPost] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -32,9 +31,14 @@ export default function Dashboard(){
 
   const loadPosts = async () => {
     setLoading(true);
-    try { const data = await listPosts(query); setPosts(data.items || []); }
-    catch (e) { setError(e.message); }
-    finally { setLoading(false); }
+    try {
+      const data = await listPosts(query);
+      setPosts(data.items || []);
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => { loadPosts(); }, [query]);
@@ -44,7 +48,6 @@ export default function Dashboard(){
     if (!text.trim()) return;
     setPosting(true);
     try {
-
       await createPost({
         text: text.trim(),
         authorId: userId,
@@ -52,8 +55,11 @@ export default function Dashboard(){
       });
       setText("");
       await loadPosts();
-    } catch (e) { setError(e.message); }
-    finally { setPosting(false); }
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setPosting(false);
+    }
   };
 
   const onDelete = async (id) => {
@@ -85,20 +91,31 @@ export default function Dashboard(){
           </div>
 
           {error && <div className="card" style={{color:"#b91c1c"}}>{error}</div>}
-          {loading ? <div className="card">Loading feed…</div> :
+          {loading ? (
+            <div className="card">Loading feed…</div>
+          ) : (
             <div className="feed">
-              {posts.map(p => (
-                <PostCard key={p._id} post={p} canDelete={p.authorId === userId} onDelete={() => onDelete(p._id)} />
-              ))}
+              {posts.map(p => {
+                
+                const authorIdStr = p.authorId?._id || p.authorId;
+                return (
+                  <PostCard
+                    key={p._id}
+                    post={p}
+                    canDelete={authorIdStr === userId}
+                    onDelete={() => onDelete(p._id)}
+                  />
+                );
+              })}
               {!posts.length && <div className="card">No posts yet.</div>}
             </div>
-          }
+          )}
         </div>
 
         <aside className="sidebar grid stack">
           <div className="card">
             <div className="header-md">Upcoming Events</div>
-            <div className="meta">Add later. For now this is a placeholder card to match design.</div>
+            <div className="meta">Add later (placeholder).</div>
             <hr/>
             <div>Greek Week Kickoff – Aug 28 (Student Center)</div>
             <div className="meta" style={{marginTop:6}}>Charity Car Wash – Aug 30 (Main St Lot)</div>
