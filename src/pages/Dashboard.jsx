@@ -12,6 +12,7 @@ export default function Dashboard(){
   const [loading, setLoading] = useState(true);
   const [posting, setPosting] = useState(false);
   const [error, setError] = useState("");
+  const [editingPost, setEditingPost] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -43,6 +44,7 @@ export default function Dashboard(){
     if (!text.trim()) return;
     setPosting(true);
     try {
+
       await createPost({
         text: text.trim(),
         authorId: userId,

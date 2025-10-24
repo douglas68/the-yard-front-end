@@ -17,11 +17,42 @@ export async function api(path, opts = {}) {
   return res.json();
 }
 
-export const getOrgs    = () => api("/organizations");
-export const createUser = (body) => api("/users", { method: "POST", body: JSON.stringify(body) });
-export const getMe      = (userId) => api(`/users/me?userId=${userId}`);
-export const updateUser = (id, body) => api(`/users/${id}`, { method: "PATCH", body: JSON.stringify(body) });
+export const getOrgs    = () => 
+  api("/organizations"
 
-export const listPosts  = (q = "") => api(`/posts${q}`);
-export const createPost = (body) => api("/posts", { method: "POST", body: JSON.stringify(body) });
-export const deletePost = (id, authorId) => api(`/posts/${id}?authorId=${authorId}`, { method: "DELETE" });
+  );
+
+export const createUser = (body) => 
+  api("/users", {
+     method: "POST", 
+     body: JSON.stringify(body) 
+    });
+
+export const getMe      = (userId) => 
+  api(`/users/me?userId=${userId}`);
+
+export const updateUser = (id, body) =>
+  api(`/users/${id}`, { 
+    method: "PATCH", 
+    body: JSON.stringify(body) 
+  });
+
+export const listPosts  = (q = "") => 
+  api(`/posts${q}`);
+
+export const createPost = (body) => 
+  api("/posts", { 
+    method: "POST", 
+    body: JSON.stringify(body) 
+  });
+
+export const deletePost = (id, authorId) => 
+  api(`/posts/${id}?authorId=${authorId}`, { 
+    method: "DELETE" 
+  });
+  
+export const editPost = (id, body, authorId) => 
+  api(`/posts/${id}`, { 
+    method: "PATCH", 
+    body: JSON.stringify({ ...body, authorId }) 
+  });
